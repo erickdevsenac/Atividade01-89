@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Aproveite+ - Lista de Produtos com Desconto</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      padding: 20px;
+    }
+
+    h2 {
+      color: #2e7d32;
+    }
+
+    .produto {
+      margin: 10px 0;
+      padding: 10px;
+      background-color: #ffffff;
+      border-left: 5px solid #2e7d32;
+    }
+
+    .urgente {
+      background-color: #fff3e0;
+      border-left-color: #ef6c00;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>📦 Lista de Produtos Próximos da Validade</h2>
+
+  <div id="lista-produtos"></div>
+
+  <script>
+    // Array com objetos representando produtos
+    const produtos = [
+      { nome: "Pão Integral", diasParaVencer: 1, preco: 3.99 },
+      { nome: "Leite", diasParaVencer: 4, preco: 2.49 },
+      { nome: "Iogurte", diasParaVencer: 0, preco: 1.99 },
+      { nome: "Manteiga", diasParaVencer: 5, preco: 6.75 },
+      { nome: "Queijo", diasParaVencer: 2, preco: 5.00 }
+    ];
+
+    const lista = document.getElementById("lista-produtos");
+
+    // Laço de repetição para listar todos os produtos
+    for (let i = 0; i < produtos.length; i++) {
+      const produto = produtos[i];
+
+      // Cria um novo elemento div para exibir o produto
+      const div = document.createElement("div");
+      div.classList.add("produto");
+
+      // Se o produto vence em 2 dias ou menos, destacamos com classe "urgente"
+      if (produto.diasParaVencer <= 2) {
+        div.classList.add("urgente");
+      }
+
+      // Define o conteúdo da div
+      div.innerHTML = `<strong>${produto.nome}</strong><br>
+        Vence em: ${produto.diasParaVencer} dia(s)<br>
+        Preço com desconto: R$ ${produto.preco.toFixed(2)}`;
+
+      // Adiciona a div à lista na página
+      lista.appendChild(div);
+    }
+  </script>
+
+</body>
+</html>
